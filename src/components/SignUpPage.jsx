@@ -18,12 +18,12 @@ const SignUpPage = ({ onSignUpSuccess }) => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="max-w-md w-full bg-white p-6 rounded-lg shadow-md">
-        <h1 className="text-3xl font-bold mb-6 text-center">Sign Up</h1>
+    <div className="min-h-screen flex items-center justify-center bg-[#1e1e1e]">
+      <div className="max-w-md w-full bg-[#2c2c2c] p-6 rounded-lg shadow-md">
+        <h1 className="text-3xl font-bold mb-6 text-center text-white">Sign Up</h1>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="email" className="block text-sm font-medium text-[#dcdcdc]">
               Email
             </label>
             <input
@@ -31,12 +31,12 @@ const SignUpPage = ({ onSignUpSuccess }) => {
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="mt-1 block w-full px-3 py-2 border border-[#333333] rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#5a5a5a]"
               required
             />
           </div>
           <div className="mb-6">
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="password" className="block text-sm font-medium text-[#dcdcdc]">
               Password
             </label>
             <input
@@ -44,13 +44,13 @@ const SignUpPage = ({ onSignUpSuccess }) => {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="mt-1 block w-full px-3 py-2 border border-[#333333] rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#5a5a5a]"
               required
             />
           </div>
           <button
             type="submit"
-            className="w-full bg-slate-950 text-white py-2 px-4 rounded-lg hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-800"
+            className="w-full bg-[#4e4e4e] text-white py-2 px-4 rounded-lg hover:bg-[#5a5a5a] focus:outline-none focus:ring-2 focus:ring-[#5a5a5a]"
           >
             Sign Up
           </button>

@@ -1,59 +1,153 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const CreateEvent = ({ setCurrentPage }) => {
-  const [eventName, setEventName] = useState('');
-  const [eventDate, setEventDate] = useState('');
-  const [eventLocation, setEventLocation] = useState('');
+const EventCreate = () => {
+  const navigate = useNavigate();
 
-  const handleCreateEvent = () => {
-    // Add your logic to send the new event to the API or save it
-    alert('Event Created Successfully!');
-    setCurrentPage('adminHome');  // Redirect to Admin Home after event is created
+  // Initialize event with default values
+  const [event, setEvent] = useState({
+    name: "",
+    host: "",
+    description: "-",
+    date: "-",
+    location: "-",
+    slots: [
+      { time: "-", availableSpots: 0 },
+      { time: "-", availableSpots: 0 },
+    ],
+    additionalConsiderations: {
+      food: false,
+      accommodation: false,
+    },
+    seatsAvailable: 0,
+  });
+
+  const handleSaveEvent = () => {
+    // Logic to save event (e.g., send the data to the server)
+    alert("Event created successfully!");
+    navigate("/admin-home"); // Redirect to Admin Home
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
-      <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-6">
-        <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">Create Event</h1>
+    <div className="min-h-screen bg-[#1e1e1e] flex items-center justify-center p-6">
+      <div className="w-full max-w-4xl bg-[#2c2c2c] p-6 rounded-lg shadow-lg">
+        <h1 className="text-3xl font-bold text-center text-white mb-6">Create Event</h1>
 
-        <form className="space-y-4">
-          <div>
-            <label className="block text-gray-600" htmlFor="eventName">Event Name</label>
+        <form onSubmit={(e) => e.preventDefault()}>
+          {/* Event Name */}
+          <div className="mb-4">
+            <label className="text-white block mb-2" htmlFor="event-name">
+              Event Name
+            </label>
             <input
               type="text"
-              id="eventName"
-              className="w-full p-2 border border-gray-300 rounded-lg"
-              value={eventName}
-              onChange={(e) => setEventName(e.target.value)}
+              id="event-name"
+              value={event.name}
+              onChange={(e) => setEvent({ ...event, name: e.target.value })}
+              className="w-full p-2 bg-[#333333] text-white border border-[#444444] rounded"
             />
           </div>
-          <div>
-            <label className="block text-gray-600" htmlFor="eventDate">Event Date</label>
-            <input
-              type="date"
-              id="eventDate"
-              className="w-full p-2 border border-gray-300 rounded-lg"
-              value={eventDate}
-              onChange={(e) => setEventDate(e.target.value)}
-            />
-          </div>
-          <div>
-            <label className="block text-gray-600" htmlFor="eventLocation">Event Location</label>
+
+          {/* Host Assignment */}
+          <div className="mb-4">
+            <label className="text-white block mb-2" htmlFor="host">
+              Assign Host
+            </label>
             <input
               type="text"
-              id="eventLocation"
-              className="w-full p-2 border border-gray-300 rounded-lg"
-              value={eventLocation}
-              onChange={(e) => setEventLocation(e.target.value)}
+              id="host"
+              value={event.host}
+              onChange={(e) => setEvent({ ...event, host: e.target.value })}
+              className="w-full p-2 bg-[#333333] text-white border border-[#444444] rounded"
             />
           </div>
-          <div className="text-center">
+
+          {/* Other Fields with Default Values */}
+          <div className="mb-4">
+            <label className="text-white block mb-2">Event Description</label>
+            <textarea
+              value={event.description}
+              readOnly
+              className="w-full p-2 bg-[#333333] text-white border border-[#444444] rounded"
+            />
+          </div>
+
+          <div className="mb-4">
+            <label className="text-white block mb-2">Date</label>
+            <input
+              type="text"
+              value={event.date}
+              readOnly
+              className="w-full p-2 bg-[#333333] text-white border border-[#444444] rounded"
+            />
+          </div>
+
+          <div className="mb-4">
+            <label className="text-white block mb-2">Location</label>
+            <input
+              type="text"
+              value={event.location}
+              readOnly
+              className="w-full p-2 bg-[#333333] text-white border border-[#444444] rounded"
+            />
+          </div>
+
+          {/* Time Slots */}
+          <div className="mb-4">
+            <label className="text-white block mb-2">Time Slots</label>
+            {event.slots.map((slot, index) => (
+              <div key={index} className="mb-4">
+                <input
+                  type="text"
+                  value={slot.time}
+                  readOnly
+                  className="w-full p-2 bg-[#333333] text-white border border-[#444444] rounded"
+                  placeholder="Slot Time"
+                />
+                <input
+                  type="number"
+                  value={slot.availableSpots}
+                  readOnly
+                  className="w-full p-2 bg-[#333333] text-white border border-[#444444] rounded mt-2"
+                  placeholder="Available Spots"
+                />
+              </div>
+            ))}
+          </div>
+
+          {/* Additional Considerations */}
+          <div className="mb-4">
+            <label className="text-white block mb-2">Additional Considerations</label>
+            <div>
+              <label className="text-white mr-4">
+                <input
+                  type="checkbox"
+                  name="food"
+                  checked={event.additionalConsiderations.food}
+                  readOnly
+                />
+                Provide Food
+              </label>
+              <label className="text-white">
+                <input
+                  type="checkbox"
+                  name="accommodation"
+                  checked={event.additionalConsiderations.accommodation}
+                  readOnly
+                />
+                Provide Accommodation
+              </label>
+            </div>
+          </div>
+
+          {/* Save Button */}
+          <div className="mt-4 flex justify-center">
             <button
               type="button"
-              onClick={handleCreateEvent}
-              className="bg-blue-500 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-600"
+              onClick={handleSaveEvent}
+              className="bg-green-500 text-white py-2 px-6 rounded"
             >
-              Create Event
+              Save Event
             </button>
           </div>
         </form>
@@ -62,4 +156,4 @@ const CreateEvent = ({ setCurrentPage }) => {
   );
 };
 
-export default CreateEvent;
+export default EventCreate;

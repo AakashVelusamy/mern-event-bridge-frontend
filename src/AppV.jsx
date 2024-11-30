@@ -2,14 +2,13 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import VolunteerHome from "./components/VolunteerHome";
-import SignUpPage from "./components/SignUpPage"; // Assuming you have this component
+import SignUpPage from "./components/SignUpPage";
 import ContactPage from "./components/ContactPage";
 import AboutPage from "./components/AboutPage";
 import AdminDashboard from "./components/EventDashboard";
-import ProfilePage from "./components/ProfilePage"; // Import ProfilePage for volunteer
-import EditProfilePage from "./components/EditProfilePage"; // Import EditProfilePage for volunteer
-import HostHome from "./components/HostHome"; // Import HostHome page for host
-import EventEdit from "./components/EventEdit"; // Import EventEdit page for event editing
+import ProfilePage from "./components/ProfilePage"; // Import ProfilePage
+import EditProfilePage from "./components/EditProfilePage"; // Import EditProfilePage
+import EventDetails from "./components/EventDetails"; // Import EventDetails
 
 const App = () => {
   const [events, setEvents] = useState([]);
@@ -20,26 +19,20 @@ const App = () => {
       const mockEvents = [
         {
           id: 1,
-          name: "Tree Plantation Drive",
-          date: "2024-12-05",
-          location: "Central Park",
           icon: "🌳", // Tree Plantation Icon
-          description: "Join us for a fun-filled day planting trees in Central Park!",
+          title: "Tree Plantation Drive",
+          description: "Join us in planting trees in the central park to contribute to a greener future.",
         },
         {
           id: 2,
-          name: "Beach Cleanup",
-          date: "2024-12-12",
-          location: "Seaside Beach",
           icon: "🏖️", // Beach Cleanup Icon
+          title: "Beach Cleanup",
           description: "Help clean up the beaches for a cleaner, healthier environment.",
         },
         {
           id: 3,
-          name: "DJ Night",
-          date: "2024-12-20",
-          location: "Community Hall",
           icon: "🎉", // DJ Night Icon
+          title: "DJ Night",
           description: "Organize a fun DJ night for the community to enjoy music and dancing.",
         },
       ];
@@ -48,11 +41,6 @@ const App = () => {
 
     fetchEvents();
   }, []);
-
-  const handleRegister = (eventId) => {
-    console.log(`Registered for event with ID: ${eventId}`);
-    alert("You have successfully registered for the event!");
-  };
 
   const handleSignUpSuccess = () => {
     setIsAuthenticated(true); // Set authentication to true after signup
@@ -70,40 +58,29 @@ const App = () => {
             !isAuthenticated ? (
               <SignUpPage onSignUpSuccess={handleSignUpSuccess} />
             ) : (
-              <Navigate to="/host-home" />
+              <Navigate to="/volunteer" />
             )
           }
         />
         {/* Protected routes after authentication */}
         {isAuthenticated && (
           <>
-            {/* Host Routes */}
-            <Route
-              path="/host-home"
-              element={<HostHome events={events} />}
-            />
-            <Route
-              path="/event-edit/:eventId"
-              element={<EventEdit />}
-            />
-            {/* Volunteer Routes */}
             <Route
               path="/volunteer"
-              element={<VolunteerHome events={events} onRegister={handleRegister} />}
+              element={<VolunteerHome events={events} />}
             />
+            <Route path="/event-details/:eventId" element={<EventDetails />} />
             <Route
               path="/profile"
-              element={<ProfilePage />} // Profile page for volunteers
+              element={<ProfilePage />} // New route for ProfilePage
             />
             <Route
               path="/edit-profile"
-              element={<EditProfilePage />} // Edit Profile page for volunteers
+              element={<EditProfilePage />} // New route for EditProfilePage
             />
-            {/* Admin Routes */}
-            <Route path="/admin" element={<AdminDashboard />} />
-            {/* Additional Pages */}
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/about" element={<AboutPage />} />
+            <Route path="/admin" element={<AdminDashboard />} />
           </>
         )}
       </Routes>

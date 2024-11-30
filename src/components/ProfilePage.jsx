@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ProfilePage = () => {
   const [userData, setUserData] = useState({
@@ -7,49 +8,52 @@ const ProfilePage = () => {
     dob: "1996-08-15",
     email: "johndoe@example.com",
   });
+  const navigate = useNavigate();
 
-  // You can replace this useEffect with an API call to fetch real user data
   useEffect(() => {
-    // Example of fetching user data (this is just mock data)
-    // You would typically fetch from an API or database here.
-    // setUserData({ ...fetchedData });
+    // Here you can replace this with an API call to fetch real user data.
   }, []);
 
-  return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-      <div className="w-full max-w-lg bg-white rounded-lg shadow-md p-8">
-        <h2 className="text-3xl font-bold text-center text-gray-700 mb-6">Profile</h2>
+  const handleEditProfile = () => {
+    navigate("/edit-profile"); // Redirect to EditProfilePage
+  };
 
-        <div className="space-y-4">
+  return (
+    <div className="min-h-screen bg-[#1e1e1e] flex items-center justify-center">
+      <div className="max-w-md w-full bg-[#2c2c2c] p-6 rounded-lg shadow-md">
+        <h2 className="text-3xl font-bold mb-6 text-center text-white">Profile</h2>
+
+        <div className="space-y-6">
           {/* Name */}
-          <div>
-            <label className="block text-sm font-medium text-gray-600 mb-2">Name</label>
-            <p className="text-lg text-gray-800">{userData.name}</p>
+          <div className="flex justify-between items-center">
+            <label className="text-sm font-medium text-[#dcdcdc]">Name</label>
+            <p className="text-lg text-white">{userData.name}</p>
           </div>
 
           {/* Age */}
-          <div>
-            <label className="block text-sm font-medium text-gray-600 mb-2">Age</label>
-            <p className="text-lg text-gray-800">{userData.age}</p>
+          <div className="flex justify-between items-center">
+            <label className="text-sm font-medium text-[#dcdcdc]">Age</label>
+            <p className="text-lg text-white">{userData.age}</p>
           </div>
 
           {/* Date of Birth */}
-          <div>
-            <label className="block text-sm font-medium text-gray-600 mb-2">Date of Birth</label>
-            <p className="text-lg text-gray-800">{userData.dob}</p>
+          <div className="flex justify-between items-center">
+            <label className="text-sm font-medium text-[#dcdcdc]">Date of Birth</label>
+            <p className="text-lg text-white">{userData.dob}</p>
           </div>
 
           {/* Email */}
-          <div>
-            <label className="block text-sm font-medium text-gray-600 mb-2">Personal Email</label>
-            <p className="text-lg text-gray-800">{userData.email}</p>
+          <div className="flex justify-between items-center">
+            <label className="text-sm font-medium text-[#dcdcdc]">Email</label>
+            <p className="text-lg text-white">{userData.email}</p>
           </div>
         </div>
 
         {/* Edit Profile Button */}
-        <div className="mt-6 text-center">
+        <div className="mt-8 flex justify-center">
           <button
-            className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
+            className="w-full bg-[#4e4e4e] text-white py-2 px-4 rounded-lg hover:bg-[#5a5a5a] focus:outline-none focus:ring-2 focus:ring-[#5a5a5a]"
+            onClick={handleEditProfile}
           >
             Edit Profile
           </button>
