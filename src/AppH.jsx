@@ -54,8 +54,8 @@ const App = () => {
     alert("You have successfully registered for the event!");
   };
 
-  const handleAuthSuccess = () => {
-    setIsAuthenticated(true); // Set authentication to true after sign up or login
+  const handleSignUpSuccess = () => {
+    setIsAuthenticated(true); // Set authentication to true after signup
   };
 
   return (
@@ -68,7 +68,7 @@ const App = () => {
           path="/"
           element={
             !isAuthenticated ? (
-              <SignUpPage onAuthSuccess={handleAuthSuccess} />
+              <SignUpPage onSignUpSuccess={handleSignUpSuccess} />
             ) : (
               <Navigate to="/host-home" />
             )
@@ -78,12 +78,27 @@ const App = () => {
         {isAuthenticated && (
           <>
             {/* Host Routes */}
-            <Route path="/host-home" element={<HostHome events={events} />} />
-            <Route path="/event-edit/:eventId" element={<EventEdit />} />
+            <Route
+              path="/host-home"
+              element={<HostHome events={events} />}
+            />
+            <Route
+              path="/event-edit/:eventId"
+              element={<EventEdit />}
+            />
             {/* Volunteer Routes */}
-            <Route path="/volunteer" element={<VolunteerHome events={events} onRegister={handleRegister} />} />
-            <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/edit-profile" element={<EditProfilePage />} />
+            <Route
+              path="/volunteer"
+              element={<VolunteerHome events={events} onRegister={handleRegister} />}
+            />
+            <Route
+              path="/profile"
+              element={<ProfilePage />} // Profile page for volunteers
+            />
+            <Route
+              path="/edit-profile"
+              element={<EditProfilePage />} // Edit Profile page for volunteers
+            />
             {/* Admin Routes */}
             <Route path="/admin" element={<AdminDashboard />} />
             {/* Additional Pages */}

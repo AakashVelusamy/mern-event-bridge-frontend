@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const SignUpPage = ({ onAuthSuccess }) => {
-  const [isSignUp, setIsSignUp] = useState(true); // Toggle between signup and login
+const SignUpLoginPage = ({ onAuthSuccess }) => {
+  const [isSignUp, setIsSignUp] = useState(true);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
     confirmPassword: "",
   });
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -17,7 +18,6 @@ const SignUpPage = ({ onAuthSuccess }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Signup validation: passwords must match
     if (isSignUp && formData.password !== formData.confirmPassword) {
       alert("Passwords do not match.");
       return;
@@ -25,9 +25,8 @@ const SignUpPage = ({ onAuthSuccess }) => {
 
     console.log(`${isSignUp ? "Signup" : "Login"} form submitted:`, formData);
 
-    // Update authentication state
-    onAuthSuccess(); // Update authentication state in App.jsx
-    navigate("/host-home"); // Redirect to HostHome after successful login/signup
+    onAuthSuccess(); // Update authentication state
+    navigate("/host-home"); // Redirect to HostHome manually
   };
 
   return (
@@ -102,4 +101,4 @@ const SignUpPage = ({ onAuthSuccess }) => {
   );
 };
 
-export default SignUpPage;
+export default SignUpLoginPage;
