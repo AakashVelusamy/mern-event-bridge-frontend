@@ -15,7 +15,7 @@ const AboutPage = () => {
           Join us on <span className="font-semibold text-white">PSG Event Bridge</span>, where connection leads to action, and together we build a stronger, more compassionate community.
         </p>
         <p className="text-lg text-[#dcdcdc]">
-          Be the change—step onto the bridge and make a difference!
+          Be the change - step onto the bridge and make a difference!
         </p>
       </div>
     </div>

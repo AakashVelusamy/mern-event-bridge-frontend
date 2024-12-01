@@ -4,26 +4,27 @@ const MessagesPage = () => {
   const [messages, setMessages] = useState([
     {
       id: 1,
-      name: "John Doe",
-      email: "john@example.com",
+      name: "Arun Kumar",
+      email: "22pt02@psgtech.ac.in",
       message: "I love your app! It's so helpful.",
-      date: "2024-11-29",
+      date: "29-11-2024", // Changed to dd-mm-yyyy format
     },
     {
       id: 2,
-      name: "Jane Smith",
-      email: "jane@example.com",
+      name: "Kabilan S",
+      email: "23pt14@psgtech.ac.in",
       message: "Could you add a reminder feature? It would be great!",
-      date: "2024-11-28",
+      date: "28-11-2024", // Changed to dd-mm-yyyy format
     },
     {
       id: 3,
-      name: "Chris Johnson",
-      email: "chris@example.com",
+      name: "Jitesh",
+      email: "23pt12@psgtech.ac.in",
       message: "How can I get involved in your events?",
-      date: "2024-11-27",
+      date: "27-11-2024", // Changed to dd-mm-yyyy format
     },
   ]);
+  
 
   return (
     <div className="min-h-screen bg-[#1e1e1e] p-6">

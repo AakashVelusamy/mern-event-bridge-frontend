@@ -38,7 +38,7 @@ const EditProfilePage = () => {
         <div className="space-y-6">
           {/* Name */}
           <div className="flex justify-between items-center">
-            <label htmlFor="name" className="text-sm font-medium text-[#dcdcdc]">Name</label>
+            <label htmlFor="name" className="text-sm font-medium text-[#dcdcdc]">Name:‎</label>
             <input
               type="text"
               id="name"
@@ -51,7 +51,7 @@ const EditProfilePage = () => {
 
           {/* Name */}
           <div className="flex justify-between items-center">
-            <label htmlFor="name" className="text-sm font-medium text-[#dcdcdc]">Roll Number</label>
+            <label htmlFor="name" className="text-sm font-medium text-[#dcdcdc]">Roll Number:‎</label>
             <input
               type="text"
               id="rollno"
@@ -64,7 +64,7 @@ const EditProfilePage = () => {
 
           {/* Name */}
           <div className="flex justify-between items-center">
-            <label htmlFor="name" className="text-sm font-medium text-[#dcdcdc]">Course</label>
+            <label htmlFor="name" className="text-sm font-medium text-[#dcdcdc]">Course:‎</label>
             <input
               type="text"
               id="course"
@@ -77,7 +77,7 @@ const EditProfilePage = () => {
 
           {/* Batch */}
           <div className="flex justify-between items-center">
-            <label htmlFor="age" className="text-sm font-medium text-[#dcdcdc]">Batch</label>
+            <label htmlFor="age" className="text-sm font-medium text-[#dcdcdc]">Batch:‎</label>
             <input
               type="number"
               id="batch"
@@ -90,7 +90,7 @@ const EditProfilePage = () => {
 
           {/* Date of Birth */}
           <div className="flex justify-between items-center">
-            <label htmlFor="dob" className="text-sm font-medium text-[#dcdcdc]">Date of Birth</label>
+            <label htmlFor="dob" className="text-sm font-medium text-[#dcdcdc]">Date of Birth:‎</label>
             <input
               type="date"
               id="dob"
@@ -103,7 +103,7 @@ const EditProfilePage = () => {
 
           {/* Email */}
           <div className="flex justify-between items-center">
-            <label htmlFor="email" className="text-sm font-medium text-[#dcdcdc]">Email</label>
+            <label htmlFor="email" className="text-sm font-medium text-[#dcdcdc]">Email: </label>
             <input
               type="email"
               id="email"
