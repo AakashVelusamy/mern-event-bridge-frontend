@@ -45,46 +45,46 @@ const EditProfilePage = () => {
               name="name"
               value={userData.name}
               onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-[#333333] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#5a5a5a]"
+              className="mt-1 block w-full px-3 py-2 border border-[#333333] bg-[#333333] text-[#dcdcdc] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#5a5a5a]"
             />
           </div>
 
-          {/* Name */}
+          {/* Roll Number */}
           <div className="flex justify-between items-center">
-            <label htmlFor="name" className="text-sm font-medium text-[#dcdcdc]">Roll Number:‎</label>
+            <label htmlFor="rollno" className="text-sm font-medium text-[#dcdcdc]">Roll Number:‎</label>
             <input
               type="text"
               id="rollno"
               name="rollno"
               value={userData.rollno}
               onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-[#333333] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#5a5a5a]"
+              className="mt-1 block w-full px-3 py-2 border border-[#333333] bg-[#333333] text-[#dcdcdc] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#5a5a5a]"
             />
           </div>
 
-          {/* Name */}
+          {/* Course */}
           <div className="flex justify-between items-center">
-            <label htmlFor="name" className="text-sm font-medium text-[#dcdcdc]">Course:‎</label>
+            <label htmlFor="course" className="text-sm font-medium text-[#dcdcdc]">Course:‎</label>
             <input
               type="text"
               id="course"
               name="course"
               value={userData.course}
               onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-[#333333] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#5a5a5a]"
+              className="mt-1 block w-full px-3 py-2 border border-[#333333] bg-[#333333] text-[#dcdcdc] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#5a5a5a]"
             />
           </div>
 
           {/* Batch */}
           <div className="flex justify-between items-center">
-            <label htmlFor="age" className="text-sm font-medium text-[#dcdcdc]">Batch:‎</label>
+            <label htmlFor="batch" className="text-sm font-medium text-[#dcdcdc]">Batch:‎</label>
             <input
               type="number"
               id="batch"
               name="batch"
               value={userData.batch}
               onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-[#333333] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#5a5a5a]"
+              className="mt-1 block w-full px-3 py-2 border border-[#333333] bg-[#333333] text-[#dcdcdc] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#5a5a5a]"
             />
           </div>
 
@@ -97,7 +97,7 @@ const EditProfilePage = () => {
               name="dob"
               value={userData.dob}
               onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-[#333333] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#5a5a5a]"
+              className="mt-1 block w-full px-3 py-2 border border-[#333333] bg-[#333333] text-[#dcdcdc] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#5a5a5a]"
             />
           </div>
 
@@ -110,7 +110,7 @@ const EditProfilePage = () => {
               name="email"
               value={userData.email}
               onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-[#333333] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#5a5a5a]"
+              className="mt-1 block w-full px-3 py-2 border border-[#333333] bg-[#333333] text-[#dcdcdc] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#5a5a5a]"
             />
           </div>
         </div>

@@ -78,8 +78,8 @@ const App = () => {
             ) : (
               // Redirect to /host-home if already authenticated
               <Navigate to="/admin-home" />
-            //   <Navigate to="/host-home" />
-            //   <Navigate to="/volunteer-home" />
+              // <Navigate to="/host-home" />
+              // <Navigate to="/volunteer-home" />
 
             )
           }

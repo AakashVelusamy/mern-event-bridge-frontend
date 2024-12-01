@@ -4,8 +4,8 @@ const MessagesPage = () => {
   const [messages, setMessages] = useState([
     {
       id: 1,
-      name: "Arun Kumar",
-      email: "22pt02@psgtech.ac.in",
+      name: "Harshil Bhavik Momaya",
+      email: "23pt11@psgtech.ac.in",
       message: "I love your app! It's so helpful.",
       date: "29-11-2024", // Changed to dd-mm-yyyy format
     },
@@ -18,9 +18,16 @@ const MessagesPage = () => {
     },
     {
       id: 3,
-      name: "Jitesh",
+      name: "Jitesh S",
       email: "23pt12@psgtech.ac.in",
       message: "How can I get involved in your events?",
+      date: "27-11-2024", // Changed to dd-mm-yyyy format
+    },
+    {
+      id: 4,
+      name: "Prathish S",
+      email: "23pt25@psgtech.ac.in",
+      message: "I am not able to register for any events.",
       date: "27-11-2024", // Changed to dd-mm-yyyy format
     },
   ]);

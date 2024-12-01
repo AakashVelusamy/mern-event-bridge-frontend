@@ -30,7 +30,7 @@ const ContactPage = () => {
                 onChange={handleFeedbackChange}
                 rows="6"
                 placeholder="Type your feedback here..."
-                className="w-full border border-[#333333] rounded-lg p-4 text-lg text-[#dcdcdc] focus:outline-none focus:ring-2 focus:ring-[#5a5a5a]"
+                className="w-full border border-[#333333] bg-[#333333] text-[#dcdcdc] rounded-lg p-4 text-lg focus:outline-none focus:ring-2 focus:ring-[#5a5a5a]"
               ></textarea>
             </div>
 
