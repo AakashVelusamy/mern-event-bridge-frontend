@@ -1,6 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+const handleSendInvites = () => {
+  alert("Invitations sent to all registered volunteers!");
+};
+
 const HostHome = ({ events }) => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#1e1e1e] p-6">
@@ -25,12 +29,12 @@ const HostHome = ({ events }) => {
                 >
                   Edit Event
                 </Link>
-                <Link
-                  to={`/send-invites/${event.id}`}
-                  className="bg-[#4e4e4e] text-white py-2 px-4 rounded-lg hover:bg-[#5a5a5a] focus:outline-none focus:ring-2 focus:ring-[#5a5a5a]"
+                <button
+                  onClick={() => handleSendInvites(event.title)}
+                  className="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-600"
                 >
-                  Send Invitations
-                </Link>
+                  Send Invites
+                </button>
               </div>
             </div>
           ))}

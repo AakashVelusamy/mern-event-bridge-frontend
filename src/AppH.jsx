@@ -17,34 +17,36 @@ const App = () => {
 
   useEffect(() => {
     const fetchEvents = async () => {
-      const mockEvents = [
+      const collegeEvents = [
         {
           id: 1,
-          name: "Tree Plantation Drive",
-          date: "2024-12-05",
-          location: "Central Park",
-          icon: "🌳", // Tree Plantation Icon
-          description: "Join us for a fun-filled day planting trees in Central Park!",
+          name: "MERN Workshop",
+          date: "25-11-2024",
+          location: "UG Lab - M Block",
+          icon: "🌍", // Debate Icon
+          description: "Learn to build dynamic web applications using MongoDB, Express, React, and Node.js in this hands-on workshop.",
         },
         {
           id: 2,
-          name: "Beach Cleanup",
-          date: "2024-12-12",
-          location: "Seaside Beach",
-          icon: "🏖️", // Beach Cleanup Icon
-          description: "Help clean up the beaches for a cleaner, healthier environment.",
+          name: "Compiler Workshop",
+          date: "05-12-2024",
+          location: "CSL 2 - M Block",
+          icon: "🗂️", // Freshers' Party Icon
+          description: "Dive deep into compiler construction and learn about parsing, lexing, and code generation in this practical workshop.",
         },
         {
           id: 3,
-          name: "DJ Night",
-          date: "2024-12-20",
-          location: "Community Hall",
-          icon: "🎉", // DJ Night Icon
-          description: "Organize a fun DJ night for the community to enjoy music and dancing.",
-        },
+          name: "Introduction to the Sport of Competitive Programming",
+          date: "21-12-2024",
+          location: "UG Lab - M Block",
+          icon: "🏅", // Hackathon Icon
+          description: "Understand the basics of competitive programming, including algorithms, problem-solving strategies, and preparation tips for coding contests.",
+        },        
+        
       ];
-      setEvents(mockEvents);
+      setEvents(collegeEvents);
     };
+    
 
     fetchEvents();
   }, []);
@@ -54,8 +56,8 @@ const App = () => {
     alert("You have successfully registered for the event!");
   };
 
-  const handleSignUpSuccess = () => {
-    setIsAuthenticated(true); // Set authentication to true after signup
+  const handleAuthSuccess = () => {
+    setIsAuthenticated(true); // Set authentication to true after sign up or login
   };
 
   return (
@@ -68,7 +70,7 @@ const App = () => {
           path="/"
           element={
             !isAuthenticated ? (
-              <SignUpPage onSignUpSuccess={handleSignUpSuccess} />
+              <SignUpPage onAuthSuccess={handleAuthSuccess} />
             ) : (
               <Navigate to="/host-home" />
             )
@@ -78,27 +80,12 @@ const App = () => {
         {isAuthenticated && (
           <>
             {/* Host Routes */}
-            <Route
-              path="/host-home"
-              element={<HostHome events={events} />}
-            />
-            <Route
-              path="/event-edit/:eventId"
-              element={<EventEdit />}
-            />
+            <Route path="/host-home" element={<HostHome events={events} />} />
+            <Route path="/event-edit/:eventId" element={<EventEdit />} />
             {/* Volunteer Routes */}
-            <Route
-              path="/volunteer"
-              element={<VolunteerHome events={events} onRegister={handleRegister} />}
-            />
-            <Route
-              path="/profile"
-              element={<ProfilePage />} // Profile page for volunteers
-            />
-            <Route
-              path="/edit-profile"
-              element={<EditProfilePage />} // Edit Profile page for volunteers
-            />
+            <Route path="/volunteer" element={<VolunteerHome events={events} onRegister={handleRegister} />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/edit-profile" element={<EditProfilePage />} />
             {/* Admin Routes */}
             <Route path="/admin" element={<AdminDashboard />} />
             {/* Additional Pages */}

@@ -4,21 +4,57 @@ import { Link } from "react-router-dom";
 const EventDashboard = () => {
   const [eventType, setEventType] = useState("upcoming");
 
-  // Placeholder events for each type
   const events = {
     upcoming: [
-      { id: 1, title: "Tree Plantation Drive", description: "Join us for a fun-filled day planting trees in Central Park!", icon: "🌳" },
-      { id: 2, title: "Beach Cleanup", description: "Help us clean the beach and make a positive impact!", icon: "🏖️" },
+      {
+        id: 3,
+        title: "Introduction to the Sport of Competitive Programming",
+        description: "Understand the basics of competitive programming, including algorithms, problem-solving strategies, and preparation tips for coding contests.",
+        icon: "💻",
+      },
+      {
+        id: 4,
+        title: "Data Structures and Algorithms Bootcamp",
+        description: "An intensive bootcamp on the most essential data structures and algorithms every programmer must know.",
+        icon: "📚",
+      },
+      {
+        id: 5,
+        title: "Blockchain Basics Workshop",
+        description: "Get hands-on experience in blockchain technology, covering concepts like decentralized applications, smart contracts, and blockchain security.",
+        icon: "🔗",
+      },
     ],
     current: [
-      { id: 3, title: "Blood Donation Drive", description: "Donate blood and save lives!", icon: "🩸" },
-      { id: 4, title: "Cooking for a Cause", description: "Join us to cook meals for the homeless!", icon: "🍳" },
+      {
+        id: 1,
+        title: "MERN Workshop",
+        description: "Learn to build dynamic web applications using MongoDB, Express, React, and Node.js in this hands-on workshop.",
+        icon: "🌐",
+      },
+      {
+        id: 2,
+        title: "Compiler Workshop",
+        description: "Dive deep into compiler construction and learn about parsing, lexing, and code generation in this practical workshop.",
+        icon: "🖥️",
+      },
     ],
     over: [
-      { id: 5, title: "Toy Donation Drive", description: "We collected toys for children in need.", icon: "🧸" },
-      { id: 6, title: "Charity Run", description: "Our charity run was a huge success!", icon: "🏃‍♂️" },
+      {
+        id: 6,
+        title: "AI and Machine Learning Symposium",
+        description: "A discussion on the latest advancements in AI and machine learning, with industry leaders presenting cutting-edge technologies and use cases.",
+        icon: "🤖",
+      },
+      {
+        id: 7,
+        title: "Cybersecurity Awareness Seminar",
+        description: "Understand the fundamentals of cybersecurity, with practical tips on securing your digital life and avoiding common threats.",
+        icon: "🔒",
+      },
     ],
   };
+  
 
   const handleEventTypeChange = (type) => {
     setEventType(type);
@@ -64,7 +100,7 @@ const EventDashboard = () => {
               </div>
               <div className="mt-4 flex space-x-4">
                 <Link
-                  to={`/event-details/${event.id}`}
+                  to={`/admin-event-details/${event.id}`}
                   className="bg-[#4e4e4e] text-white py-2 px-4 rounded-lg hover:bg-[#5a5a5a] focus:outline-none focus:ring-2 focus:ring-[#5a5a5a]"
                 >
                   View Details

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 const SignUpPage = ({ onAuthSuccess }) => {
   const [isSignUp, setIsSignUp] = useState(true); // Toggle between signup and login
@@ -8,7 +7,6 @@ const SignUpPage = ({ onAuthSuccess }) => {
     password: "",
     confirmPassword: "",
   });
-  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -25,9 +23,8 @@ const SignUpPage = ({ onAuthSuccess }) => {
 
     console.log(`${isSignUp ? "Signup" : "Login"} form submitted:`, formData);
 
-    // Update authentication state
-    onAuthSuccess(); // Update authentication state in App.jsx
-    navigate("/host-home"); // Redirect to HostHome after successful login/signup
+    // Update authentication state and trigger redirect in parent component
+    onAuthSuccess(); // Call onAuthSuccess to set authenticated state in App.js
   };
 
   return (

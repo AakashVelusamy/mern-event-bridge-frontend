@@ -15,10 +15,7 @@ const EventCreate = () => {
       { time: "-", availableSpots: 0 },
       { time: "-", availableSpots: 0 },
     ],
-    additionalConsiderations: {
-      food: false,
-      accommodation: false,
-    },
+    additionalConsiderations: ["", ""], // initialize with empty strings
     seatsAvailable: 0,
   });
 
@@ -26,6 +23,24 @@ const EventCreate = () => {
     // Logic to save event (e.g., send the data to the server)
     alert("Event created successfully!");
     navigate("/admin-home"); // Redirect to Admin Home
+  };
+
+  const handleAddConsideration = () => {
+    setEvent({
+      ...event,
+      additionalConsiderations: [...event.additionalConsiderations, ""],
+    });
+  };
+
+  const handleRemoveConsideration = (index) => {
+    const newConsiderations = event.additionalConsiderations.filter((_, i) => i !== index);
+    setEvent({ ...event, additionalConsiderations: newConsiderations });
+  };
+
+  const handleConsiderationChange = (index, value) => {
+    const newConsiderations = [...event.additionalConsiderations];
+    newConsiderations[index] = value;
+    setEvent({ ...event, additionalConsiderations: newConsiderations });
   };
 
   return (
@@ -118,26 +133,31 @@ const EventCreate = () => {
           {/* Additional Considerations */}
           <div className="mb-4">
             <label className="text-white block mb-2">Additional Considerations</label>
-            <div>
-              <label className="text-white mr-4">
+            {event.additionalConsiderations.map((consideration, index) => (
+              <div key={index} className="mb-4 flex">
                 <input
-                  type="checkbox"
-                  name="food"
-                  checked={event.additionalConsiderations.food}
-                  readOnly
+                  type="text"
+                  value={consideration}
+                  onChange={(e) => handleConsiderationChange(index, e.target.value)}
+                  className="w-full p-2 bg-[#333333] text-white border border-[#444444] rounded"
+                  placeholder="Enter consideration"
                 />
-                Provide Food
-              </label>
-              <label className="text-white">
-                <input
-                  type="checkbox"
-                  name="accommodation"
-                  checked={event.additionalConsiderations.accommodation}
-                  readOnly
-                />
-                Provide Accommodation
-              </label>
-            </div>
+                <button
+                  type="button"
+                  onClick={() => handleRemoveConsideration(index)}
+                  className="bg-red-500 text-white py-2 px-4 rounded ml-2"
+                >
+                  Remove
+                </button>
+              </div>
+            ))}
+            <button
+              type="button"
+              onClick={handleAddConsideration}
+              className="bg-blue-500 text-white py-2 px-4 rounded"
+            >
+              Add Consideration
+            </button>
           </div>
 
           {/* Save Button */}

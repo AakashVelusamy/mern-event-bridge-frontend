@@ -12,8 +12,8 @@ const VolunteerHome = ({ events }) => {
               <div className="flex items-center space-x-4">
                 <div className="text-4xl">{event.icon}</div>
                 <div>
-                  <h2 className="text-xl font-semibold text-white">{event.title}</h2>
-                  <p className="text-[#dcdcdc]">{event.description}</p>
+                  <h2 className="text-xl font-semibold text-white mb-2">{event.name}</h2> {/* Event name above description */}
+                  <p className="text-[#dcdcdc]">{event.description}</p> {/* Description below name */}
                 </div>
               </div>
               <div className="mt-4 flex space-x-4">

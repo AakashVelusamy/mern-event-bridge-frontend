@@ -1,96 +1,81 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import VolunteerHome from "./components/VolunteerHome";
-import SignUpPage from "./components/SignUpPage"; // Assuming you have this component
-import ContactPage from "./components/ContactPage";
-import AboutPage from "./components/AboutPage";
-import AdminDashboard from "./components/EventDashboard";
-import ProfilePage from "./components/ProfilePage"; // Import ProfilePage for volunteer
-import EditProfilePage from "./components/EditProfilePage"; // Import EditProfilePage for volunteer
-import HostHome from "./components/HostHome"; // Import HostHome page for host
-import EventEdit from "./components/EventEdit"; // Import EventEdit page for event editing
+import SignUpPage from "./components/SignUpPage";
+import AdminHome from "./components/AdminHome";
+import MessagesPage from "./components/MessagesPage";
+import EventCreate from "./components/EventCreate";
+import EventDashboard from "./components/EventDashboard";
+import ManageEvents from "./components/ManageEvents";
+import AdminEventDetails from "./components/AdminEventDetails";
+import EventEdit from "./components/EventEdit";
 
 const App = () => {
-  const [events, setEvents] = useState([]);
   const [isAuthenticated, setIsAuthenticated] = useState(false); // Authentication state
 
-  useEffect(() => {
-    const fetchEvents = async () => {
-      const mockEvents = [
-        {
-          id: 1,
-          name: "Tree Plantation Drive",
-          date: "2024-12-05",
-          location: "Central Park",
-          icon: "🌳", // Tree Plantation Icon
-          description: "Join us for a fun-filled day planting trees in Central Park!",
-        },
-        {
-          id: 2,
-          name: "Beach Cleanup",
-          date: "2024-12-12",
-          location: "Seaside Beach",
-          icon: "🏖️", // Beach Cleanup Icon
-          description: "Help clean up the beaches for a cleaner, healthier environment.",
-        },
-        {
-          id: 3,
-          name: "DJ Night",
-          date: "2024-12-20",
-          location: "Community Hall",
-          icon: "🎉", // DJ Night Icon
-          description: "Organize a fun DJ night for the community to enjoy music and dancing.",
-        },
-      ];
-      setEvents(mockEvents);
-    };
-
-    fetchEvents();
-  }, []);
-
-  const handleRegister = (eventId) => {
-    console.log(`Registered for event with ID: ${eventId}`);
-    alert("You have successfully registered for the event!");
-  };
-
-  const handleAuthSuccess = () => {
-    setIsAuthenticated(true); // Set authentication to true after sign up or login
+  const handleSignUpSuccess = () => {
+    setIsAuthenticated(true); // After successful signup, set authenticated to true
   };
 
   return (
     <BrowserRouter>
-      {/* Only render Navbar after authentication */}
-      {isAuthenticated && <Navbar />}
       <Routes>
-        {/* Conditional route rendering: SignUpPage only if not authenticated */}
+        {/* SignUpPage Route */}
         <Route
           path="/"
           element={
             !isAuthenticated ? (
-              <SignUpPage onAuthSuccess={handleAuthSuccess} />
+              <SignUpPage onAuthSuccess={handleSignUpSuccess} />
             ) : (
-              <Navigate to="/host-home" />
+              <Navigate to="/admin-home" />
             )
           }
         />
-        {/* Protected routes after authentication */}
-        {isAuthenticated && (
-          <>
-            {/* Host Routes */}
-            <Route path="/host-home" element={<HostHome events={events} />} />
-            <Route path="/event-edit/:eventId" element={<EventEdit />} />
-            {/* Volunteer Routes */}
-            <Route path="/volunteer" element={<VolunteerHome events={events} onRegister={handleRegister} />} />
-            <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/edit-profile" element={<EditProfilePage />} />
-            {/* Admin Routes */}
-            <Route path="/admin" element={<AdminDashboard />} />
-            {/* Additional Pages */}
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/about" element={<AboutPage />} />
-          </>
-        )}
+
+        {/* AdminHome Route after successful signup */}
+        <Route
+          path="/admin-home"
+          element={
+            isAuthenticated ? (
+              <div className="min-h-screen bg-[#1e1e1e] flex flex-col items-center justify-center text-white">
+                <div className="bg-[#1e1e1e] p-4 text-white border-b border-[#333333] w-full">
+                  <div className="container mx-auto flex items-center space-x-2">
+                    <img src="/icon.png" alt="Website Icon" className="h-8 w-8" />
+                    <h1 className="text-2xl font-bold hover:text-[#a8a8a8]">PSG Event Bridge</h1>
+                  </div>
+                </div>
+                <AdminHome />
+              </div>
+            ) : (
+              <Navigate to="/" />
+            )
+          }
+        />
+
+        {/* Other routes */}
+        <Route
+          path="/messages"
+          element={isAuthenticated ? <MessagesPage /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/create-event"
+          element={isAuthenticated ? <EventCreate /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/event-dashboard"
+          element={isAuthenticated ? <EventDashboard /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/admin-event-details/:eventId"
+          element={isAuthenticated ? <AdminEventDetails /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/event-edit/:eventId"
+          element={isAuthenticated ? <EventEdit /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/manage-events"
+          element={isAuthenticated ? <ManageEvents /> : <Navigate to="/" />}
+        />
       </Routes>
     </BrowserRouter>
   );

@@ -3,10 +3,12 @@ import { useNavigate } from "react-router-dom";
 
 const ProfilePage = () => {
   const [userData, setUserData] = useState({
-    name: "John Doe",
-    age: 28,
-    dob: "1996-08-15",
-    email: "johndoe@example.com",
+    name: "Aakash Velusamy",
+    rollno: "23PT01",
+    course: "M.Sc Theoretical Computer Science",
+    batch: 2023,
+    dob: "04-06-2005",
+    email: "23pt01@psgtech.ac.in",
   });
   const navigate = useNavigate();
 
@@ -29,11 +31,23 @@ const ProfilePage = () => {
             <label className="text-sm font-medium text-[#dcdcdc]">Name</label>
             <p className="text-lg text-white">{userData.name}</p>
           </div>
+        
+          {/* Name */}
+          <div className="flex justify-between items-center">
+            <label className="text-sm font-medium text-[#dcdcdc]">Roll Number</label>
+            <p className="text-lg text-white">{userData.rollno}</p>
+          </div>
 
           {/* Age */}
           <div className="flex justify-between items-center">
-            <label className="text-sm font-medium text-[#dcdcdc]">Age</label>
-            <p className="text-lg text-white">{userData.age}</p>
+            <label className="text-sm font-medium text-[#dcdcdc]">Course</label>
+            <p className="text-lg text-white">{userData.course}</p>
+          </div>
+
+          {/* Age */}
+          <div className="flex justify-between items-center">
+            <label className="text-sm font-medium text-[#dcdcdc]">Batch</label>
+            <p className="text-lg text-white">{userData.batch}</p>
           </div>
 
           {/* Date of Birth */}

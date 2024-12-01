@@ -5,31 +5,66 @@ const EventEdit = () => {
   const { eventId } = useParams();
   const navigate = useNavigate();
 
-  // Dummy event data for editing
-  const [event, setEvent] = useState({
-    id: 1,
-    name: "Tree Plantation Drive",
-    description: "Join us for a fun-filled day planting trees in Central Park!",
-    date: "2024-12-05",
-    location: "Central Park",
-    slots: [
-      { time: "9:00 AM - 11:00 AM", availableSpots: 10 },
-      { time: "11:00 AM - 1:00 PM", availableSpots: 8 },
-    ],
-    additionalConsiderations: {
-      food: false,
-      accommodation: false,
+  // Initialize mock events or fetch events from an API
+  const events = [
+    {
+      id: 1,
+      name: "MERN Workshop",
+      description: "Learn to build dynamic web applications using MongoDB, Express, React, and Node.js in this hands-on workshop.",
+      date: "25-11-2024",
+      location: "UG Lab - M Block",
+      slots: [
+        { time: "10:00 AM - 12:00 PM", availableSpots: 20 },
+        { time: "1:00 PM - 3:00 PM", availableSpots: 15 },
+      ],
+      additionalConsiderations: [
+        "Free Snacks",
+        "Free Wi-Fi",
+      ],
+      seatsAvailable: 35,
     },
-    seatsAvailable: 50,
-  });
+    {
+      id: 2,
+      name: "Compiler Workshop",
+      description: "Dive deep into compiler construction and learn about parsing, lexing, and code generation in this practical workshop.",
+      date: "05-12-2024",
+      location: "CSL 2 - M Block",
+      slots: [
+        { time: "9:00 AM - 11:00 AM", availableSpots: 10 },
+        { time: "11:30 AM - 1:30 PM", availableSpots: 8 },
+      ],
+      additionalConsiderations: [],
+      seatsAvailable: 20,
+    },
+    {
+      id: 3,
+      name: "Introduction to the Sport of Competitive Programming",
+      description: "Understand the basics of competitive programming, including algorithms, problem-solving strategies, and preparation tips for coding contests.",
+      date: "21-12-2024",
+      location: "UG Lab - M Block",
+      slots: [
+        { time: "9:00 AM - 12:00 PM", availableSpots: 30 },
+        { time: "1:00 PM - 4:00 PM", availableSpots: 25 },
+      ],
+      additionalConsiderations: [
+        "Snacks Available",
+        "Free Parking",
+      ],
+      seatsAvailable: 50,
+    },
+  ];
 
-  const [updatedEvent, setUpdatedEvent] = useState(event);
+  const [updatedEvent, setUpdatedEvent] = useState(null);
 
+  // Fetch the event data based on eventId
   useEffect(() => {
-    // You can fetch the event details from an API if needed
-    setUpdatedEvent(event); 
-  }, [event]);
+    const eventToEdit = events.find((event) => event.id === parseInt(eventId));
+    if (eventToEdit) {
+      setUpdatedEvent(eventToEdit);
+    }
+  }, [eventId]);
 
+  // Handle input changes
   const handleSlotChange = (index, newSlot) => {
     const newSlots = [...updatedEvent.slots];
     newSlots[index] = newSlot;
@@ -48,15 +83,22 @@ const EventEdit = () => {
     setUpdatedEvent({ ...updatedEvent, slots: newSlots });
   };
 
-  const handleAdditionalConsiderationChange = (event) => {
-    const { name, checked } = event.target;
+  const handleAddConsideration = () => {
     setUpdatedEvent({
       ...updatedEvent,
-      additionalConsiderations: {
-        ...updatedEvent.additionalConsiderations,
-        [name]: checked,
-      },
+      additionalConsiderations: [...updatedEvent.additionalConsiderations, ""],
     });
+  };
+
+  const handleRemoveConsideration = (index) => {
+    const newConsiderations = updatedEvent.additionalConsiderations.filter((_, i) => i !== index);
+    setUpdatedEvent({ ...updatedEvent, additionalConsiderations: newConsiderations });
+  };
+
+  const handleConsiderationChange = (index, value) => {
+    const newConsiderations = [...updatedEvent.additionalConsiderations];
+    newConsiderations[index] = value;
+    setUpdatedEvent({ ...updatedEvent, additionalConsiderations: newConsiderations });
   };
 
   const handleSaveEvent = () => {
@@ -64,6 +106,10 @@ const EventEdit = () => {
     alert("Event details updated successfully!");
     navigate("/host-home");
   };
+
+  if (!updatedEvent) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="min-h-screen bg-[#1e1e1e] flex items-center justify-center p-6">
@@ -147,26 +193,31 @@ const EventEdit = () => {
 
           <div className="mb-4">
             <label className="text-white block mb-2">Additional Considerations</label>
-            <div>
-              <label className="text-white mr-4">
+            {updatedEvent.additionalConsiderations.map((consideration, index) => (
+              <div key={index} className="mb-4 flex">
                 <input
-                  type="checkbox"
-                  name="food"
-                  checked={updatedEvent.additionalConsiderations.food}
-                  onChange={handleAdditionalConsiderationChange}
+                  type="text"
+                  value={consideration}
+                  onChange={(e) => handleConsiderationChange(index, e.target.value)}
+                  className="w-full p-2 bg-[#333333] text-white border border-[#444444] rounded"
+                  placeholder="Enter consideration"
                 />
-                Provide Food
-              </label>
-              <label className="text-white">
-                <input
-                  type="checkbox"
-                  name="accommodation"
-                  checked={updatedEvent.additionalConsiderations.accommodation}
-                  onChange={handleAdditionalConsiderationChange}
-                />
-                Provide Accommodation
-              </label>
-            </div>
+                <button
+                  type="button"
+                  onClick={() => handleRemoveConsideration(index)}
+                  className="bg-red-500 text-white py-2 px-4 rounded ml-2"
+                >
+                  Remove
+                </button>
+              </div>
+            ))}
+            <button
+              type="button"
+              onClick={handleAddConsideration}
+              className="bg-blue-500 text-white py-2 px-4 rounded"
+            >
+              Add Consideration
+            </button>
           </div>
 
           <div className="mt-4 flex justify-center">

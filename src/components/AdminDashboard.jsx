@@ -3,20 +3,125 @@ import React, { useState } from "react";
 const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState("current");
 
-  // Mock event data
-  const currentEvents = [
-    { id: 1, name: "Tree Plantation Drive", date: "2024-12-05", location: "Central Park" },
-    { id: 2, name: "Beach Cleanup", date: "2024-12-12", location: "Seaside Beach" },
-  ];
+// Current events
+const currentEvents = [
+  {
+    id: 1,
+    name: "MERN Workshop",
+    description: "Learn to build dynamic web applications using MongoDB, Express, React, and Node.js in this hands-on workshop.",
+    date: "25-11-2024",
+    location: "UG Lab - M Block",
+    slots: [
+      { time: "10:00 AM - 12:00 PM", availableSpots: 20 },
+      { time: "1:00 PM - 3:00 PM", availableSpots: 15 },
+    ],
+    additionalConsiderations: {
+      food: true,
+      accommodation: false,
+    },
+    seatsAvailable: 35,
+  },
+  {
+    id: 2,
+    name: "Compiler Workshop",
+    description: "Dive deep into compiler construction and learn about parsing, lexing, and code generation in this practical workshop.",
+    date: "05-12-2024",
+    location: "CSL 2 - M Block",
+    slots: [
+      { time: "9:00 AM - 11:00 AM", availableSpots: 10 },
+      { time: "11:30 AM - 1:30 PM", availableSpots: 8 },
+    ],
+    additionalConsiderations: {
+      food: false,
+      accommodation: false,
+    },
+    seatsAvailable: 20,
+  },
+];
 
-  const upcomingEvents = [
-    { id: 3, name: "Food Distribution", date: "2024-12-20", location: "Community Hall" },
-    { id: 4, name: "Clothing Drive", date: "2024-12-25", location: "City Center" },
-  ];
+// Upcoming events
+const upcomingEvents = [
+  {
+    id: 3,
+    name: "Introduction to the Sport of Competitive Programming",
+    description: "Understand the basics of competitive programming, including algorithms, problem-solving strategies, and preparation tips for coding contests.",
+    date: "21-12-2024",
+    location: "UG Lab - M Block",
+    slots: [
+      { time: "9:00 AM - 12:00 PM", availableSpots: 30 },
+      { time: "1:00 PM - 4:00 PM", availableSpots: 25 },
+    ],
+    additionalConsiderations: {
+      food: true,
+      accommodation: false,
+    },
+    seatsAvailable: 50,
+  },
+  {
+    id: 4,
+    name: "Data Structures and Algorithms Bootcamp",
+    description: "An intensive bootcamp on the most essential data structures and algorithms every programmer must know.",
+    date: "15-01-2025",
+    location: "UG Lab - M Block",
+    slots: [
+      { time: "9:00 AM - 12:00 PM", availableSpots: 40 },
+      { time: "1:00 PM - 3:00 PM", availableSpots: 35 },
+    ],
+    additionalConsiderations: {
+      food: true,
+      accommodation: false,
+    },
+    seatsAvailable: 75,
+  },
+  {
+    id: 5,
+    name: "Blockchain Basics Workshop",
+    description: "Get hands-on experience in blockchain technology, covering concepts like decentralized applications, smart contracts, and blockchain security.",
+    date: "10-02-2025",
+    location: "CSL 3 - M Block",
+    slots: [
+      { time: "10:00 AM - 1:00 PM", availableSpots: 25 },
+      { time: "2:00 PM - 5:00 PM", availableSpots: 20 },
+    ],
+    additionalConsiderations: {
+      food: true,
+      accommodation: false,
+    },
+    seatsAvailable: 45,
+  },
+];
 
-  const pastEvents = [
-    { id: 5, name: "Animal Shelter Visit", date: "2024-11-10", location: "Animal Shelter" },
-  ];
+// Past events
+const pastEvents = [
+  {
+    id: 6,
+    name: "AI and Machine Learning Symposium",
+    description: "A discussion on the latest advancements in AI and machine learning, with industry leaders presenting cutting-edge technologies and use cases.",
+    date: "15-10-2024",
+    location: "Main Auditorium - M Block",
+    slots: [],
+    additionalConsiderations: {
+      food: true,
+      accommodation: true,
+    },
+    seatsAvailable: 0,
+  },
+  {
+    id: 7,
+    name: "Cybersecurity Awareness Seminar",
+    description: "Understand the fundamentals of cybersecurity, with practical tips on securing your digital life and avoiding common threats.",
+    date: "30-09-2024",
+    location: "Conference Room 1 - M Block",
+    slots: [],
+    additionalConsiderations: {
+      food: false,
+      accommodation: false,
+    },
+    seatsAvailable: 0,
+  },
+];
+
+
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
